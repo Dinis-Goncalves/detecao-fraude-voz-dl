@@ -1,0 +1,52 @@
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+ENV/
+
+# ==============================
+# IDEs e editores
+# ==============================
+.idea/
+.vscode/
+
+# ==============================
+# Jupyter Notebook
+# ==============================
+.ipynb_checkpoints/
+
+# ==============================
+# Sistema operativo
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Ficheiros temporários e logs
+# ==============================
+*.log
+*.tmp
+*.bak
+
+# ==============================
+# Configurações e credenciais
+# ==============================
+.env
+.env.*
+!.env.example
+
+# ==============================
+# TensorFlow / Keras
+# ==============================
+
+# Cache local
+.keras/

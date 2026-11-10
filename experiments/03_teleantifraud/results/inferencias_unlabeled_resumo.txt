@@ -1,0 +1,3 @@
+Instâncias unlabeled: 2527
+Previstas como fraude: 270
+Previstas como não fraude: 2257
