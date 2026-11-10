@@ -54,13 +54,13 @@ detecao_fraude_voz/
 │   └── SOURCES.md                      # Origens e licenças dos dados (Apache 2.0)
 │
 ├── docs/                               # Relatório técnico de licenciatura (PDF)
-│   └── Deteção_De_Fraude_Em_Comunicações_De_Voz_Dinis_Goncalves.pdf
+│   └── RelatorioProjeto_DinisGoncalves.pdf
 │
 ├── experiments/                        # Suítes de experiências isoladas
-│   ├── 01_individuais/
+│   ├── 01_datasets_individuais/
 │   │   ├── results/                    # CSVs e gráficos de métricas individuais
 │   │   └── script/treinar_datasets_individuais.py
-│   ├── 02_merged/
+│   ├── 02_dataset_merged/
 │   │   ├── results/                    # EDA txt, CSVs e plots comparativos
 │   │   └── script/treinar_dataset_merged.py
 │   ├── 03_teleantifraud/
@@ -90,11 +90,11 @@ detecao_fraude_voz/
 
 ## 🔬 Organização das Experiências & Resultados
 
-### 01. Datasets Sintéticos Individuais (`01_individuais`)
+### 01. Datasets Sintéticos Individuais (`01_datasets_individuais`)
 Treino e avaliação isolada nos 4 datasets sintéticos (*MASC, SASC, SSC, SSD*).
 - **Conclusão:** Resultados quase perfeitos ($F1 \approx 1.0$) na maioria dos datasets sintéticos devido à elevada regularidade estrutural dos diálogos gerados. No *MASC* (sequências mais longas), modelos recorrentes unidirecionais falharam ($Recall \approx 0.05$), enquanto **Bi-LSTM**, **Bi-GRU** e **CNN** mantiveram desempenho perfeito.
 
-### 02. Datasets Merged & Sanity Check (`02_merged`)
+### 02. Datasets Merged & Sanity Check (`02_dataset_merged`)
 Avaliação nos datasets consolidados e desduplicados (*merged*, *merged_shuffled*, *merged_half*). Inclui um mecanismo de controlo:
 - **Flag `--sanity-check`:** Baralha aleatoriamente as *labels* no treino (`rng.permutation(y_train)`) mantendo o conjunto de teste intato. Garante que as elevadas métricas obtidas decorrem da aprendizagem real de padrões linguísticos e não de *overfitting* ou memorização de ruído.
 
@@ -120,7 +120,7 @@ Script unificado com três baterias de testes focados em robustez operacional:
 
 ```bash
 # Clonar o repositório
-git clone (link))
+git clone (https://github.com/Dinis-Goncalves/detecao-fraude-voz-dl.git))
 cd detecao_fraude_voz
 
 # Criar e ativar ambiente virtual
@@ -135,16 +135,16 @@ pip install -r requirements.txt
 
 #### 🟢 Experiência 01: Datasets Individuais
 ```bash
-python experiments/01_individuais/script/treinar_datasets_individuais.py
+python experiments/01_datasets_individuais/script/treinar_datasets_individuais.py
 ```
 
 #### 🟡 Experiência 02: Datasets Merged & Sanity Check
 ```bash
 # Treino padrão (15 épocas com EarlyStopping)
-python experiments/02_merged/script/treinar_dataset_merged.py --epochs 15
+python experiments/02_dataset_merged/script/treinar_dataset_merged.py --epochs 15
 
 # Teste de Sanity Check (labels baralhadas no treino)
-python experiments/02_merged/script/treinar_dataset_merged.py --sanity-check --epochs 5
+python experiments/02_dataset_merged/script/treinar_dataset_merged.py --sanity-check --epochs 5
 ```
 
 #### 🔵 Experiência 03: TeleAntiFraud & Inferência
