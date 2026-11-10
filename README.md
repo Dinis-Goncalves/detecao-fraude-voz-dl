@@ -120,8 +120,8 @@ Script unificado com três baterias de testes focados em robustez operacional:
 
 ```bash
 # Clonar o repositório
-git clone (https://github.com/Dinis-Goncalves/detecao-fraude-voz-dl.git))
-cd detecao_fraude_voz
+git clone https://github.com/Dinis-Goncalves/detecao-fraude-voz-dl.git
+cd detecao-fraude-voz-dl
 
 # Criar e ativar ambiente virtual
 python -m venv .venv
@@ -135,40 +135,40 @@ pip install -r requirements.txt
 
 #### 🟢 Experiência 01: Datasets Individuais
 ```bash
-python experiments/01_datasets_individuais/script/treinar_datasets_individuais.py
+python experiments/01_datasets_individuais/treinar_datasets_individuais.py
 ```
 
 #### 🟡 Experiência 02: Datasets Merged & Sanity Check
 ```bash
 # Treino padrão (15 épocas com EarlyStopping)
-python experiments/02_dataset_merged/script/treinar_dataset_merged.py --epochs 15
+python experiments/02_dataset_merged/treinar_dataset_merged.py --epochs 15
 
 # Teste de Sanity Check (labels baralhadas no treino)
-python experiments/02_dataset_merged/script/treinar_dataset_merged.py --sanity-check --epochs 5
+python experiments/02_dataset_merged/treinar_dataset_merged.py --sanity-check --epochs 5
 ```
 
 #### 🔵 Experiência 03: TeleAntiFraud & Inferência
 ```bash
 # Análise Exploratória (EDA)
-python experiments/03_teleantifraud/script/treinar_dataset_teleantifraud.py --eda
+python experiments/03_teleantifraud/treinar_dataset_teleantifraud.py --eda
 
 # Treinar os 6 modelos e exportar o modelo vencedor (CNN) para saved_models/
-python experiments/03_teleantifraud/script/treinar_dataset_teleantifraud.py --guardar-modelo --epochs 15
+python experiments/03_teleantifraud/treinar_dataset_teleantifraud.py --guardar-modelo --epochs 15
 
 # Classificar instâncias sem rótulo (unlabeled) usando o modelo guardado
-python experiments/03_teleantifraud/script/treinar_dataset_teleantifraud.py --inferir-unlabeled
+python experiments/03_teleantifraud/treinar_dataset_teleantifraud.py --inferir-unlabeled
 ```
 
 #### 🔴 Experiência 04: Experiências Extra (Generalização / Early Detection / Splits)
 ```bash
 # 1. Matrizes Cross-Dataset (Heatmaps de transferência)
-python experiments/04_experiencias_extra/script/experiencias_extra.py todos-contra-todos --epochs 10
+python experiments/04_experiencias_extra/experiencias_extra.py todos-contra-todos --epochs 10
 
 # 2. Deteção Precoce (Chamadas truncadas de 5% a 100%)
-python experiments/04_experiencias_extra/script/experiencias_extra.py menos-palavras --epochs 10
+python experiments/04_experiencias_extra/experiencias_extra.py menos-palavras --epochs 10
 
 # 3. Curva de Colapso (Variação do split de teste entre 20% e 90%)
-python experiments/04_experiencias_extra/script/experiencias_extra.py tamanhos-teste --epochs 10
+python experiments/04_experiencias_extra/experiencias_extra.py tamanhos-teste --epochs 10
 ```
 
 ---
